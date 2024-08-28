@@ -1,0 +1,5 @@
+ipAddress,baseName,startingIndex,numNodes,ossModelIdentity,nodeType,platformType,addNodeIntKpi,addNodeExtKpi
+10.152.17.1,LTE101,1,50,5783-904-386,ERBS,CPP,120,120
+10.152.18.1,LTE102,1,50,5783-904-386,ERBS,CPP,120,120
+
+

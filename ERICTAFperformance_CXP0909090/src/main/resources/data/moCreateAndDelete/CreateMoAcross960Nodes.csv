@@ -1,0 +1,7 @@
+filter,ldn,attributes
+LTE11,"ManagedElement=1,SwManagement=1,LoadModule=testId","loadModuleFilePath=path,productData=(productRevision=rev,productName=name,productInfo=info,productNumber=123,productionDate=20150325)"
+LTE12,"ManagedElement=1,SwManagement=1,LoadModule=testId","loadModuleFilePath=path,productData=(productRevision=rev,productName=name,productInfo=info,productNumber=123,productionDate=20150325)"
+LTE13,"ManagedElement=1,SwManagement=1,LoadModule=testId","loadModuleFilePath=path,productData=(productRevision=rev,productName=name,productInfo=info,productNumber=123,productionDate=20150325)"
+LTE14,"ManagedElement=1,SwManagement=1,LoadModule=testId","loadModuleFilePath=path,productData=(productRevision=rev,productName=name,productInfo=info,productNumber=123,productionDate=20150325)"
+LTE17,"ManagedElement=1,SwManagement=1,LoadModule=testId","loadModuleFilePath=path,productData=(productRevision=rev,productName=name,productInfo=info,productNumber=123,productionDate=20150325)"
+LTE18,"ManagedElement=1,SwManagement=1,LoadModule=testId","loadModuleFilePath=path,productData=(productRevision=rev,productName=name,productInfo=info,productNumber=123,productionDate=20150325)"

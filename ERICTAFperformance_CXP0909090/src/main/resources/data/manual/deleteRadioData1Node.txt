@@ -1,0 +1,41 @@
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test4,EUtranFreqRelation=1,EUtranCellRelation=1
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test4,EUtranFreqRelation=1,EUtranCellRelation=2
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test4,EUtranFreqRelation=1,EUtranCellRelation=3
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test3,EUtranFreqRelation=1,EUtranCellRelation=1
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test3,EUtranFreqRelation=1,EUtranCellRelation=2
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test3,EUtranFreqRelation=1,EUtranCellRelation=3
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test2,EUtranFreqRelation=1,EUtranCellRelation=1
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test2,EUtranFreqRelation=1,EUtranCellRelation=2
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test2,EUtranFreqRelation=1,EUtranCellRelation=3
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test1,EUtranFreqRelation=1,EUtranCellRelation=1
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test1,EUtranFreqRelation=1,EUtranCellRelation=2
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test1,EUtranFreqRelation=1,EUtranCellRelation=3
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test1 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test2 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test3 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtranCellFDD=test4 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00050 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00051 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00052 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00053 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00054 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00055 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00056 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00057 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00058 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00059 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00060 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00061 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00062 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00063 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00064 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00065 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00066 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00067 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00068 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,ExternalENodeBFunction=LTE01ERBS00069 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,Cdma2000Network=1,Cdma2000FreqBand=10 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,Cdma2000Network=1,Cdma2000FreqBand=11 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,EUtraNetwork=1,EUtranFrequency=test1 -ALL
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,GeraNetwork=1,GeranFreqGroup=100
+cmedit delete SubNetwork=LTE01,MeContext=LTE01ERBS00160,ManagedElement=1,ENodeBFunction=1,UtraNetwork=1,UtranFrequency=100

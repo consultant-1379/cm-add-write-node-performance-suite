@@ -1,0 +1,72 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Complete KPI test suite">
+    <test name="'AddNode' KPI tests" preserve-order="true">
+        <classes>
+            <class name="com.ericsson.oss.mediation.cm.tests.add.node.AddRemoveLteNode">
+                <methods>
+                    <include name="addRemoveSingleNode" /> 
+                    <include name="addRemoveBatchNodes1VUser" />
+                    <include name="addRemoveBatchNodes2VUser" />
+                    <include name="addRemoveBatchNodes4VUser" /> 
+                    <include name="addRemoveBatchNodes10VUser" /> 
+                    <include name="addRemove5KNetwork" />  
+                    <include name="removeBatchOfNodesWithWildCard1VUser" />
+                    <include name="addRemoveSyncedSingleNode" />
+                    <include name="addRemoveSyncedBatchNodes1VUser" />
+            		<include name="addRemoveSyncedBatchNodes10VUser" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+	
+    <!-- Network Load must be setup for the Write Node tests to execute -->
+    <test name="'CreateAndDeleteMo' KPI tests" preserve-order="true">
+        <classes>
+            <class name="com.ericsson.oss.mediation.cm.tests.write.node.CreateMoOnLteNode">
+                <methods>
+                    <include name="createSingleMoAcross160Nodes_singleVuser" />
+                    <include name="deleteSingleMoAcross160Nodes_singleVuser" />
+                    <include name="createSingleMoAcross960Nodes_singleVuser" />
+                    <include name="deleteSingleMoAcross960Nodes_singleVuser" />
+                    <include name="createSingleMoAcross960Nodes_multipleVuser" />
+                    <include name="deleteSingleMoAcross960Nodes_multipleVuser" />
+                </methods>
+            </class>
+        </classes>
+    </test> 
+
+    <!-- Network Load must be setup for the Write Node tests to execute -->
+    <test name="'ReadNonPersistedAttributes' KPI tests"
+        preserve-order="true">
+        <classes>
+            <class name="com.ericsson.oss.mediation.cm.tests.write.node.ReadNonPersistentDataFromLteNode">
+                <methods>
+                    <include name="readNonPersMoAttrsFrom1Node_singleVuser" />
+                    <include name="readNonPersMoAttrsFrom160Nodes_singleVuser" />
+                    <include name="readANonPersMoAttrsFrom1440Nodes_multipleVusers" />
+                    <include name="readNonPersMoAttrsFrom1440Nodes_singleVuser" />
+                    <include name="readNonPersMoAttrsFromAllEutrancellsInNetwork_multipleVusers" />
+                    <include name="readNonPersMoAttrsFromAllEutrancellsInNetwork_singleVuser" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- Network Load must be setup for the Write Node tests to execute -->
+    <test name="'ModifyLteNode' KPI tests" preserve-order="true">
+        <classes>
+            <class name="com.ericsson.oss.mediation.cm.tests.write.node.ModifyLteNode">
+                <methods>
+                    <include name="lockAllEutranCellsFor1Node_singleVuser" />
+                    <include name="unlockAllEutranCellsFor1Node_singleVuser" />
+                    <include name="lockAllEutranCellsFor1Rns_singleVuser" />
+                    <include name="unlockAllEutranCellsFor1Rns_singleVuser" />
+                    <include name="lockAllEutranCellsFor10Rns_multipleVuser" />
+                    <include name="unlockAllEutranCellsFor10Rns_multipleVuser" />
+                    <include name="lockAllEutranCellsFor10Rns_singleVuser" />
+                    <include name="unlockAllEutranCellsFor10Rns_singleVuser" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.ericsson.nms.mediation</groupId>
+    <artifactId>cm-add-write-node-performance-suite</artifactId>
+    <version>1.0.43-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>test-pom-cm-add-write-node-performance-suite</artifactId>
+  <packaging>pom</packaging>
+
+  <properties>
+    <taf_testware>true</taf_testware>
+    <allure.script.location>scripts/</allure.script.location>
+    <suite.profile>kpiSuite</suite.profile>
+    <allure.script>executeSuiteWithAllure.sh</allure.script>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.ericsson.nms.mediation</groupId>
+      <artifactId>ERICTAFperformance_CXP0909090</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>kpiSuite</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.ericsson.cifwk.taf</groupId>
+            <artifactId>taf-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>test</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <suites>KpiSuite.xml</suites>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>generateKPISuiteAllureReport</id>
+      <activation>
+        <property>
+          <name>generateKPISuiteAllureReport</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>PERMISSION</id>
+                <phase>pre-clean</phase>
+                <configuration>
+                  <target>
+                    <echo message="Changing permissions for ${allure.script.location}${allure.script}" />
+                    <exec executable="chmod" dir="${allure.script.location}" failonerror="true">
+                      <arg value="+x" />
+                      <arg value="${allure.script}" />
+                    </exec>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>REPORT_GENERATION</id>
+                <phase>pre-clean</phase>
+                <configuration>
+                  <target>
+                    <echo message="KPI suite will be executed" />
+                    <exec executable="sh" dir="${allure.script.location}" failonerror="true">
+                      <arg value="${allure.script}" />
+                      <arg value="${clusterId}" />
+                      <arg value="${mvnProfile}" />
+                      <arg value="${suite.profile}" />
+                    </exec>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>ant-contrib</groupId>
+                <artifactId>ant-contrib</artifactId>
+                <version>20020829</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>setupNetworkLoad</id>
+      <activation>
+        <property>
+          <name>setupNetworkLoad</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.ericsson.cifwk.taf</groupId>
+            <artifactId>taf-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>test</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <suites>SetupNetworkLoad.xml</suites>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>removeNetworkLoad</id>
+      <activation>
+        <property>
+          <name>removeNetworkLoad</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.ericsson.cifwk.taf</groupId>
+            <artifactId>taf-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>test</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <suites>RemoveNetworkLoad.xml</suites>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>maven305</id>
+      <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+          <plugin>
+            <groupId>com.ericsson.cifwk.taf</groupId>
+            <artifactId>taf-allure-old-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </reporting>
+    </profile>
+
+    <profile>
+      <id>maven323</id>
+      <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+          <plugin>
+            <groupId>com.ericsson.cifwk.taf</groupId>
+            <artifactId>taf-allure-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </reporting>
+    </profile>
+
+    <profile>
+      <id>skipTests</id>
+      <activation>
+        <property>
+          <name>skipTests</name>
+          <value>true</value>
+        </property>
+      </activation>
+    </profile>
+
+  </profiles>
+
+</project>

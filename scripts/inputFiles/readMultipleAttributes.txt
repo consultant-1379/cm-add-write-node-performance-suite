@@ -1,0 +1,1 @@
+cmedit get LTE05ERBS00022 EUtranCellFDD.(EUtranCellFDDId==LTE05ERBS00022-1,pmZtemporary9,pmUeCtxtRelCsfbWcdmaEm,userLabel)

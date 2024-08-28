@@ -1,0 +1,1 @@
+cmedit get LTE05ERBS00022 PmService.(PmServiceId==1,performanceDataPath)

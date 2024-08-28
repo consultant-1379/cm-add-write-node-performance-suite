@@ -1,0 +1,11 @@
+filter,moType,attributes
+*LTE10,EUtranCellFDD,administrativeState=LOCKED
+*LTE11,EUtranCellFDD,administrativeState=LOCKED
+*LTE12,EUtranCellFDD,administrativeState=LOCKED
+*LTE13,EUtranCellFDD,administrativeState=LOCKED
+*LTE14,EUtranCellFDD,administrativeState=LOCKED
+*LTE15,EUtranCellFDD,administrativeState=LOCKED
+*LTE16,EUtranCellFDD,administrativeState=LOCKED
+*LTE17,EUtranCellFDD,administrativeState=LOCKED
+*LTE18,EUtranCellFDD,administrativeState=LOCKED
+*LTE19,EUtranCellFDD,administrativeState=LOCKED

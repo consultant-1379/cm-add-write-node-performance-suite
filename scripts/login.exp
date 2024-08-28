@@ -1,0 +1,323 @@
+#!/usr/bin/expect
+
+set timeout 30
+
+global suUser
+global adminUser
+global password
+global peer
+global ip
+global vapp
+global vm
+
+set suUser "root"
+set adminUser "litp-admin"
+set password "12shroot"
+set ip [lindex $argv 0]
+set peer [lindex $argv 1]
+set vm [lindex $argv 2]
+set isVapp "false";
+
+#
+# Functions
+#
+
+proc printUsage { } {
+
+	global suUser
+	 
+	puts "DESCRIPTION"
+	puts "\tLogin script for enm environments.\n"
+	puts "SYNOPSIS"
+	puts "\tlogin.exp <ipaddress> \[<peer no.>\] \[<VM string>\] \[vapp\]\n"
+	puts "EXAMPLES"
+	puts "\tExample1: \tlogin.exp <ipaddress>\n"
+	puts "\t This will login to the ms specified by the <ipaddress>\n"
+	puts "\tExample2: \tlogin.exp <ipaddress> vapp\n"
+	puts "\t This will login to the ms of a vApp server. The <ipaddress> is the gateway for the vApp\n"
+	puts "\tExample3: \tlogin.exp <ipaddress> 1\n"
+	puts "\t This will login to the svc-1 of the server as user ${suUser}\n"
+	puts "\tExample4: \tlogin.exp <ipaddress> 1 vapp\n"
+	puts "\t This will login to the svc-1 of a vApp server as user ${suUser}. The <ipaddress> is the gateway for the vApp\n"
+	puts "\tExample5: \tlogin.exp <ipaddress> 1 vapp pmserv\n"
+	puts "\t This will login to the svc-1-pmserv VM of a vApp server as user ${suUser}. The <ipaddress> is the gateway for the vApp\n"
+}
+
+proc msLogin { } {
+
+	global timeout
+	global ip
+	global suUser
+	global password
+	global isVapp
+	
+	if { $isVapp == "true" } { 
+		spawn ssh "${suUser}\@${ip}" -p 2242
+	} else {
+		spawn ssh "${suUser}\@${ip}"	
+	}
+	
+	expect {
+		"yes/no" {
+			send "yes\r"
+			expect "assword:"
+			send "$password\r"
+			expect "]#" { return $spawn_id }
+		}
+	
+		"Host key verification failed." {
+			spawn ssh-keygen -f "/home/eeiwdey/.ssh/known_hosts" -R ${ip}
+			expect "known_hosts.old"
+			send "exit\r"
+			return 0
+		}
+
+		"assword:" {
+			send "$password\r"
+			expect "]#" { return $spawn_id }
+		}
+		
+		timeout {
+			send_user "WARNING!! - Could not access \"${ip}\" using password \"${password}\"\n"
+            exit 1
+		}
+	}
+}
+
+proc kvmPeerLogin { } {
+
+	global timeout	
+	global adminUser
+	global peer
+	global isVapp
+
+	if { $isVapp == "true" } { 
+		send "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${adminUser}@cloud-svc-${peer}\r"
+	} else {
+		send "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${adminUser}@svc-${peer}\r"
+	}
+	
+	expect {
+		"yes/no" {
+			send "yes\r"
+			expect "assword:"
+			kvmLitpAdminLogin
+			kvmSuLogin
+		}
+
+		"assword:" {
+			kvmLitpAdminLogin
+			kvmSuLogin
+		}
+
+		"]\\$" { }
+		
+		timeout {
+			send_user "WARNING!! - Could not access \"svc-${peer}\"."
+            		exit 1
+		}
+	}
+}
+
+proc kvmLitpAdminLogin { } {
+	
+	global timeout	
+	global adminUser
+	global password
+	global peer
+
+	send "$password\r";
+
+	expect {
+		"]\\$" { }
+		
+		"assword:" {
+			send "passw0rd\r"
+			expect {
+				"UNIX password:" {
+					send "passw0rd\r"
+					expect "New password:" 
+					send "$password\r"
+					expect "Retype new password:"
+					send "$password\r"
+					expect "]#"
+					send "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ${adminUser}@svc-${peer}\r"
+					expect "assword:"
+					send "$password\r"
+					expect "]\\$"
+				}
+					
+				"]\\$" { }
+			}
+		}
+		
+		timeout {
+			send_user "WARNING!! - Failed to to login to \"svc-${peer}\"."
+            exit 1
+		}		
+	}
+}
+
+proc kvmSuLogin { } {
+	
+	global timeout
+	global password
+	
+	send "su -\r"
+	expect "assword:"
+	send "$password\r"	
+	expect {
+		"]#" { }
+
+		"incorrect password" {
+			send "su -\r"
+			expect "assword:"
+			send "litpc0b6lEr\r"
+			expect {
+				"assword:" {
+					send "litpc0b6lEr\r"
+					expect "assword:"
+					send "$password\r"
+					expect "assword:"
+					send "$password\r"
+					expect "]#"
+				}
+				
+				"]#" { }
+			}
+		}
+		
+		timeout {
+			send_user "WARNING!! - Failed to switch to su on the peer."
+            		exit 1
+		}			
+	}
+}
+
+proc vmLogin { } {
+
+	global timeout	
+	global adminUser
+	global peer
+	global vm
+	global password
+	global isVapp
+
+	if { ${vm} == "db" } {
+	
+		if { $isVapp == "true" } { 
+			send "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no litp-admin@cloud-${vm}-${peer}\r"
+		} else {
+			send "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no litp-admin@${vm}-${peer}\r"		
+		}
+		expect {
+			"yes/no" {
+				send "yes\r"
+				expect "assword:"
+				send "${password}\r"
+				expect "litp-admin"
+			}
+
+			"assword:" {
+				send "${password}\r"
+				expect "litp-admin"
+			}
+			
+			timeout {
+				send_user "WARNING!! - Could not access \"svc-${peer}\"."
+            	exit 1
+			}
+		}
+		
+		send "su -\r"
+		expect "assword:"
+		send "${password}\r"
+		expect ]#
+		send "cd /etc/opt/ericsson/ERICmodeldeployment/\r"
+	
+	} elseif { ${vm} == "versant" } {
+	
+		if { $isVapp == "true" } { 
+			send "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no litp-admin@cloud-db-${peer}\r"
+		} else {
+			send "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no litp-admin@db-${peer}\r"
+		}
+		
+		expect {
+			"yes/no" {
+				send "yes\r"
+				expect "assword:"
+				send "${password}\r"
+				expect "litp-admin"
+			}
+
+			"assword:" {
+				send "${password}\r"
+				expect "litp-admin"
+			}
+	
+			"]\\$" { }
+	
+			timeout {
+				send_user "WARNING!! - Could not access \"svc-${peer}\"."
+            	exit 1
+			}
+		}
+		
+		send "su -\r"
+		expect "assword:"
+		send "${password}\r"
+		expect ]#
+		send "su - versant\r"
+		expect versant
+		send "cd /ericsson/versant/bin/\r"
+		
+	} else {
+		send "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /root/.ssh/vm_private_key cloud-user@svc-${peer}-${vm}\r"
+		expect {
+			"yes/no" {
+				send "yes\r"
+				expect "]\\$"
+			}
+
+			"]$ " {}
+		
+			timeout {
+				send_user "WARNING!! - Could not access \"svc-${peer}-${vm}\"."
+            			exit 1
+			}
+		}
+		send "cd /ericsson/3pp/jboss/standalone/log/\r"
+	}
+}
+
+#
+# Main
+#
+
+if {[llength $argv] < 1} {
+	printUsage
+	exit 1
+}
+    	
+if { [lindex $argv 1] == "vapp" || [lindex $argv 2] == "vapp" || [lindex $argv 3] == "vapp" } { 
+	set isVapp "true"
+}
+
+set spawn_id [msLogin]
+
+if {${spawn_id} == 0} {
+    set spawn_id [msLogin]
+}
+
+if { $isVapp == "true" } {
+	if { [llength $argv] == 2 } { }
+	if { [llength $argv] == 3 } { kvmPeerLogin }
+	if { [llength $argv] == 4 } { vmLogin }
+} else {
+	if { [llength $argv] == 1 } { }
+	if { [llength $argv] == 2 } { kvmPeerLogin }
+	if { [llength $argv] == 3 } { vmLogin }
+}
+
+interact

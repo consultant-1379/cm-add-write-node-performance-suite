@@ -1,0 +1,5 @@
+cmedit create MeContext=LTE05ERBS00022 MeContextId="LTE05ERBS00022",neType="ERBS",platformType="CPP" -ns=OSS_TOP -version=3.0.0
+cmedit create NetworkElement=LTE05ERBS00022 networkElementId="LTE05ERBS00022",neType="ERBS",platformType="CPP",ossModelIdentity="0166-930-179",ossPrefix="" -ns=OSS_NE_DEF -version=2.0.0
+cmedit create NetworkElement=LTE05ERBS00022,CppConnectivityInformation=1 CppConnectivityInformationId="1",ipAddress="10.236.116.22",port="80" -ns=CPP_MED -version=1.0.0
+cmedit set NetworkElement=LTE05ERBS00022,CmNodeHeartbeatSupervision=1 active=true
+cmedit get NetworkElement=LTE05ERBS00022,CmFunction=1

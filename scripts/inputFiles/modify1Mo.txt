@@ -1,0 +1,3 @@
+cmedit get LTE05ERBS00022 ENodeBFunction
+cmedit set SubNetwork=LTE05,MeContext=LTE05ERBS00022,ManagedElement=1,ENodeBFunction=1 userLabel=test
+cmedit get LTE05ERBS00022 ENodeBFunction

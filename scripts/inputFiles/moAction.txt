@@ -1,0 +1,2 @@
+cmedit action SubNetwork=LTE05,MeContext=LTE05ERBS00022,ManagedElement=1,SwManagement=1,ConfigurationVersion=1 create.(configurationVersionName=DoozerTestName01,identity=DoozerTest01,type=STANDARD,operatorName=doozersTest,comment=TestComment01)
+cmedit action SubNetwork=LTE05,MeContext=LTE05ERBS00022,ManagedElement=1,SwManagement=1,ConfigurationVersion=1 delete.(configurationVersionName=DoozerTestName01)

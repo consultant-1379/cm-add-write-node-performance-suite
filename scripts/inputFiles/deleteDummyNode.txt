@@ -1,0 +1,5 @@
+cmedit set NetworkElement=LTE05ERBS00100,CmNodeHeartbeatSupervision=1 active=false
+cmedit set NetworkElement=LTE05ERBS00100,FmAlarmSupervision=1 active=false
+cmedit set NetworkElement=LTE05ERBS00100,InventorySupervision=1 active=false
+cmedit action NetworkElement=LTE05ERBS00100,CmFunction=1 deleteNrmDataFromEnm
+cmedit delete NetworkElement=LTE05ERBS00100 -ALL

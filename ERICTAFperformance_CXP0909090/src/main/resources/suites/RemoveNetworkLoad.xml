@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Add Large Network test suite">
+	
+	<test name="Removes a large network" preserve-order="true">
+		<classes>
+			 <class name="com.ericsson.oss.mediation.cm.tests.common.setup.NetworkLoad">
+				<methods>
+					<include name="removeLargeNetwork" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+</suite>

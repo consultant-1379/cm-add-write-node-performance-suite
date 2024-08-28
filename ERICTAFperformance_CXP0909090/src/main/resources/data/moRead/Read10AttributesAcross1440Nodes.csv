@@ -1,0 +1,2 @@
+filter,moType,attributes
+LTE1,EUtranCellFDD,"userLabel,administrativeState,pmZtemporary9,pmRadioUeRepRankDistr,externalCdma20001xRttCellRef,dynCellSubscrCap,measuredMaxNoOfUsersInCell,pmRrcConnReestAttQci,pmRlcPollRetxUl,pmS1SigConnEstabFailMmeOvlMos"
